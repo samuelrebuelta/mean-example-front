@@ -53,7 +53,7 @@
   <div class="row">
     <div class="col-5 cars-container">
       <!-- Fetch cars button -->
-      <a class="app-btn" (click)="fetchCars()">FETCH CAR BRANDS</a>
+      <a class="app-btn" (click)="fetchBrands()">FETCH CAR BRANDS</a>
       <!-- Loading message -->
       <label *ngIf="isLoading">Loading...</label>
       <!-- Car list -->
@@ -68,13 +68,13 @@
       <form [formGroup]="newCarForm">
         <div class="form-group">
           <label for="brand">Brand</label>
-          <input type="text" class="form-control" id="brand" placeholder="Enter brand">
+          <input type="text" formControlName="brand" class="form-control" id="brand" placeholder="Enter brand">
         </div>
         <div class="form-group">
           <label for="model">Model</label>
-          <input type="text" class="form-control" id="model" placeholder="Enter model">
+          <input type="text" formControlName="model" class="form-control" id="model" placeholder="Enter model">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button [disabled]="newCarForm.invalid" type="submit" class="btn btn-primary" (click)="newBrand()">Submit</button>
       </form>
     </div>
   </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 interface IResponse {
   message: string;
@@ -23,16 +23,29 @@ export class AppComponent {
     private fb: FormBuilder
   ) {
     this.newCarForm = this.fb.group({
-      brand: new FormControl(),
-      model: new FormControl(),
+      brand: new FormControl(null, Validators.required),
+      model: new FormControl(null),
     });
   }
 
-  fetchCars() {
+  fetchBrands() {
     this.isLoading = true;
-    this.http.get('http://localhost:3000/fetch/example')
+    this.http.get('http://localhost:3000/brands')
       .subscribe(
         (res: IResponse) => { this.cars = res.data; this.isLoading = false; },
+        (error) => this.isLoading = false
+      );
+  }
+
+  newBrand() {
+    this.isLoading = true;
+    const body = {
+      brand: this.newCarForm.controls.brand.value,
+      model: this.newCarForm.controls.model.value
+    };
+    this.http.post('http://localhost:3000/brands', body)
+      .subscribe(
+        (res: IResponse) => this.isLoading = false,
         (error) => this.isLoading = false
       );
   }
