@@ -19,7 +19,11 @@
           <div class="spinner-border m-5"></div>
         </div>
         <ng-container *ngIf="brandListLoading === 0">
-          <div class="car-item" *ngFor="let car of cars">{{car.brand}}</div>
+          <div class="row car-item" *ngFor="let item of cars">
+            <div class="col-10">{{item.brandName}}</div>
+            <div class="col-2 delete-btn" (click)="deleteBrand(item._id)"><a>X</a></div>
+          </div>
+          <div class="car-item no-data" *ngIf="!cars || cars?.length === 0">No data to show</div>
         </ng-container>
       </div>
     </div>
@@ -31,11 +35,11 @@
       <form [formGroup]="newCarForm">
         <div class="form-group">
           <label for="brand">Brand</label>
-          <input type="text" formControlName="brand" class="form-control" id="brand" placeholder="Enter brand">
+          <input type="text" formControlName="brandName" class="form-control" id="brand" placeholder="Enter brand">
         </div>
         <div class="form-group">
           <label for="model">Model</label>
-          <input type="text" formControlName="model" class="form-control" id="model" placeholder="Enter model">
+          <input type="text" formControlName="modelDescription" class="form-control" id="model" placeholder="Enter model">
         </div>
         <button class="btn btn-primary" type="submit" [disabled]="newCarForm.invalid" (click)="newBrand()">
           <span *ngIf="newBrandLoading !== 0" class="spinner-border spinner-border-sm"

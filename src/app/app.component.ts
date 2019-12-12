@@ -27,8 +27,8 @@ export class AppComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.newCarForm = this.fb.group({
-      brand: new FormControl(null, Validators.required),
-      model: new FormControl(null),
+      brandName: new FormControl(null, Validators.required),
+      modelDescription: new FormControl(null),
     });
   }
 
@@ -39,7 +39,6 @@ export class AppComponent implements OnInit {
   fetchBrands() {
     this.brandListLoading++;
     this.http.get('http://localhost:3000/brands')
-      .pipe(delay(1000))
       .subscribe(
         (res: IResponse) => { this.cars = res.data; this.brandListLoading--; },
         (error) => this.brandListLoading--
@@ -49,14 +48,22 @@ export class AppComponent implements OnInit {
   newBrand() {
     this.newBrandLoading++;
     const body = {
-      brand: this.newCarForm.controls.brand.value,
-      model: this.newCarForm.controls.model.value
+      brandName: this.newCarForm.controls.brandName.value,
+      modelDescription: this.newCarForm.controls.modelDescription.value
     };
     this.http.post('http://localhost:3000/brands', body)
-      .pipe(delay(1000))
       .subscribe(
         (res: IResponse) => { this.newBrandLoading--; this.newCarForm.reset(); this.fetchBrands(); },
         (error) => this.newBrandLoading--
+      );
+  }
+
+  deleteBrand(id) {
+    this.brandListLoading++;
+    this.http.delete(`http://localhost:3000/brands/delete/${id}`)
+      .subscribe(
+        (res: IResponse) => { this.brandListLoading--; this.fetchBrands(); },
+        (error) => this.brandListLoading--
       );
   }
 }
