@@ -23,7 +23,7 @@
             <div class="col-10">{{item.brandName}}</div>
             <div class="col-2 delete-btn" (click)="deleteBrand(item._id)"><a>X</a></div>
           </div>
-          <div class="car-item no-data" *ngIf="!cars || cars?.length === 0">No data to show</div>
+          <div class="row car-item no-data" *ngIf="!cars || cars?.length === 0">No data to show</div>
         </ng-container>
       </div>
     </div>

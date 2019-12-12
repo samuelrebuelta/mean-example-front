@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
 
   deleteBrand(id) {
     this.brandListLoading++;
-    this.http.delete(`http://localhost:3000/brands/delete/${id}`)
+    this.http.delete(`http://localhost:3000/brands/${id}/delete`)
       .subscribe(
         (res: IResponse) => { this.brandListLoading--; this.fetchBrands(); },
         (error) => this.brandListLoading--
