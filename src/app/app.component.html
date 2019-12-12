@@ -35,13 +35,15 @@
       <form [formGroup]="newCarForm">
         <div class="form-group">
           <label for="brand">Brand</label>
-          <input type="text" formControlName="brandName" class="form-control" id="brand" placeholder="Enter brand">
+          <input type="text" class="form-control" id="brand" placeholder="Enter brand" formControlName="brandName"
+            [value]="newCarForm.get('brandName').value | titlecase">
         </div>
         <div class="form-group">
           <label for="model">Model</label>
-          <input type="text" formControlName="modelDescription" class="form-control" id="model" placeholder="Enter model">
+          <input type="text" class="form-control" id="model" placeholder="Enter model"
+            formControlName="modelDescription" [value]="newCarForm.get('modelDescription').value | titlecase">
         </div>
-        <button class="btn btn-primary" type="submit" [disabled]="newCarForm.invalid" (click)="newBrand()">
+        <button class="btn btn-primary" type="submit" [disabled]="newCarForm.invalid || newBrandLoading !== 0" (click)="newBrand()">
           <span *ngIf="newBrandLoading !== 0" class="spinner-border spinner-border-sm"
             style="margin-right: 8px;"></span>
           <span>{{newBrandLoading !== 0 ? 'Loading...' : 'Submit'}}</span>

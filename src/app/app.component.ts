@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { delay } from 'rxjs/operators';
 
 interface IResponse {
   message: string;
