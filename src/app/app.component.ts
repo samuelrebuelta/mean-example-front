@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { delay } from 'rxjs/operators';
 
 interface IResponse {
   message: string;
@@ -12,11 +13,14 @@ interface IResponse {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'mean-example-front';
+export class AppComponent implements OnInit {
+  title = 'Mean example App';
   cars: Array<any>;
   newCarForm: FormGroup;
-  isLoading = false;
+
+  // Spinner
+  brandListLoading = 0;
+  newBrandLoading = 0;
 
   constructor(
     private http: HttpClient,
@@ -28,25 +32,31 @@ export class AppComponent {
     });
   }
 
+  ngOnInit() {
+    this.fetchBrands();
+  }
+
   fetchBrands() {
-    this.isLoading = true;
+    this.brandListLoading++;
     this.http.get('http://localhost:3000/brands')
+      .pipe(delay(1000))
       .subscribe(
-        (res: IResponse) => { this.cars = res.data; this.isLoading = false; },
-        (error) => this.isLoading = false
+        (res: IResponse) => { this.cars = res.data; this.brandListLoading--; },
+        (error) => this.brandListLoading--
       );
   }
 
   newBrand() {
-    this.isLoading = true;
+    this.newBrandLoading++;
     const body = {
       brand: this.newCarForm.controls.brand.value,
       model: this.newCarForm.controls.model.value
     };
     this.http.post('http://localhost:3000/brands', body)
+      .pipe(delay(1000))
       .subscribe(
-        (res: IResponse) => this.isLoading = false,
-        (error) => this.isLoading = false
+        (res: IResponse) => { this.newBrandLoading--; this.newCarForm.reset(); this.fetchBrands(); },
+        (error) => this.newBrandLoading--
       );
   }
 }

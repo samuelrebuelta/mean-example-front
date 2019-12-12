@@ -286,6 +286,7 @@ svg#clouds {
 
 // Own styles
 .cars-container {
+  margin-top: 40px;
   .car-list {
     margin-top: 20px;
   }
@@ -303,6 +304,8 @@ svg#clouds {
 }
 
 .form-container {
+  margin-top: 40px;
+  h3 { margin: 0 0 20px 0; }
   label {
     font-weight: bold;
   }
