@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-12 col-lg-5 cars-container">
+        <a class="app-btn" (click)="fetchBrands()">FETCH CAR BRANDS</a>
+        <app-car-list [carListLoading]="carListLoading" [cars]="cars" (deleteBrand)="onDeleteBrand($event)">
+        </app-car-list>
+    </div>
+
+    <div class="col-2"></div>
+
+    <div class="col-12 col-lg-5 form-container">
+        <h3>New car</h3>
+        <app-post-car-form [newCarLoading]="newCarLoading" (postCar)="onPostCar($event)"></app-post-car-form>
+    </div>
+</div>
