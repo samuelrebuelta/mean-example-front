@@ -1,0 +1,12 @@
+<div class="text-center" *ngIf="modelListLoading !== 0">
+    <div class="spinner-border m-5"></div>
+</div>
+<ng-container *ngIf="modelListLoading === 0">
+    <div class="row car-item model-item" *ngFor="let item of selectedBrand?.models">
+        <div class="col-10">{{item.modelDescription | titlecase}}</div>
+        <div class="col-2 delete-btn" (click)="deleteModel.emit({id: selectedBrand._id, modelId: item._id})"><a>X</a>
+        </div>
+    </div>
+    <div class="row car-item no-data" *ngIf="!selectedBrand?.models || selectedBrand?.models?.length === 0">No data to
+        show</div>
+</ng-container>

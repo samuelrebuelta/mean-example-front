@@ -1,0 +1,44 @@
+.notification {
+    visibility: hidden;
+    height: 0;
+    transition: height 0.2s ease-out;
+    position: fixed;
+    top: 0;
+    width: 101%;
+    margin-left: -15px;
+    color: white;
+}
+
+.hide {
+    visibility: visible;
+    height: 0px !important;
+    transition: height 0.2s ease-out;
+    color: transparent;
+}
+
+.show {
+    visibility: visible;
+    height: 60px !important;
+    transition: height 0.2s cubic-bezier(0.01, 0.92, 0.96, 0.92);
+    padding-top: 20px;
+}
+
+.toast-success {
+    background-color: green;
+}
+
+.toast-error {
+    background-color: #c41f1f;
+}
+
+.message-toast {
+    padding-left: 10%;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.close-toast {
+    padding-right: 30px;
+}

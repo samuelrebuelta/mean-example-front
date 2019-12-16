@@ -9,7 +9,10 @@ export class CarListComponent implements OnInit {
 
   @Input() carListLoading: number;
   @Input() cars: Array<any>;
+  @Input() selectedBrand: Array<any>;
+  @Output() selectedBrandChange = new EventEmitter<any>();
   @Output() deleteBrand = new EventEmitter<any>();
+  @Output() updateBrand = new EventEmitter<any>();
 
   constructor() { }
 

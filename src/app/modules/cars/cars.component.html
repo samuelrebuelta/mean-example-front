@@ -1,14 +1,34 @@
-<div class="row">
-    <div class="col-12 col-lg-5 cars-container">
-        <a class="app-btn" (click)="fetchBrands()">FETCH CAR BRANDS</a>
-        <app-car-list [carListLoading]="carListLoading" [cars]="cars" (deleteBrand)="onDeleteBrand($event)">
-        </app-car-list>
-    </div>
+<section class="cars-container">
+    <div class="row min-h-60">
+        <div class="col-12 col-lg-5 cars-data-container">
+            <div class="row">
+                <h3 class="col-6 col-lg-7">Brands:</h3>
+                <div class="col-6 col-lg-5 text-right" style="padding-top: 8px;"><a class="app-btn"
+                        (click)="fetchBrands()">FETCH BRANDS</a></div>
+            </div>
+            <div class="car-list ov-a">
+                <app-car-list [carListLoading]="carListLoading" [cars]="cars" [(selectedBrand)]="selectedBrand"
+                    (deleteBrand)="onDeleteBrand($event)" (updateBrand)="onUpdateBrand($event)">
+                </app-car-list>
+            </div>
+        </div>
 
-    <div class="col-2"></div>
-
-    <div class="col-12 col-lg-5 form-container">
-        <h3>New car</h3>
-        <app-post-car-form [newCarLoading]="newCarLoading" (postCar)="onPostCar($event)"></app-post-car-form>
+        <div class="col-12 col-lg-2"></div>
+        <div class="col-12 col-lg-5 cars-data-container">
+            <ng-container *ngIf="selectedBrand">
+                <div class="row">
+                    <h3 class="col-12">{{selectedBrand?.brandName | titlecase}} models:</h3>
+                </div>
+                <div class="car-list ov-a">
+                    <app-model-list [selectedBrand]="selectedBrand" [modelListLoading]="modelListLoading" (deleteModel)="onDeleteModel($event)"></app-model-list>
+                </div>
+            </ng-container>
+        </div>
     </div>
-</div>
+    <div class="row min-h-40">
+        <div class="col-12 form-container">
+            <h3>New car</h3>
+            <app-post-car-form [newCarLoading]="newCarLoading" (postCar)="onPostCar($event)"></app-post-car-form>
+        </div>
+    </div>
+</section>

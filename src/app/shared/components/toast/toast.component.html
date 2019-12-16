@@ -1,0 +1,4 @@
+<div class="notification row" [class.show]="data?.show" [class.hide]="!data?.show" [ngClass]="data?.type === toastTypes.SUCCESS ? 'toast-success' : 'toast-error'">
+    <div class="col-10 message-toast">{{data?.type === toastTypes.ERROR ? 'Error: ' : ''}} {{data?.message}}</div>
+    <div class="col-2 text-right c-p close-toast" (click)="data.show = false">X</div>
+</div>

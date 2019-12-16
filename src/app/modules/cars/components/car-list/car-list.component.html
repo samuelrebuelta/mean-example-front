@@ -1,12 +1,13 @@
-<div class="car-list">
-    <div class="text-center" *ngIf="carListLoading !== 0">
-        <div class="spinner-border m-5"></div>
-    </div>
-    <ng-container *ngIf="carListLoading === 0">
-        <div class="row car-item" *ngFor="let item of cars">
-            <div class="col-10">{{item.brandName | titlecase}}</div>
-            <div class="col-2 delete-btn" (click)="deleteBrand.emit(item._id)"><a>X</a></div>
-        </div>
-        <div class="row car-item no-data" *ngIf="!cars || cars?.length === 0">No data to show</div>
-    </ng-container>
+<div class="text-center" *ngIf="carListLoading !== 0">
+    <div class="spinner-border m-5"></div>
 </div>
+<ng-container *ngIf="carListLoading === 0">
+    <div class="row car-item" *ngFor="let item of cars">
+        <div class="col-8" (click)="selectedBrandChange.emit(item)">{{item.brandName | titlecase}}</div>
+        <div class="col-2 delete-btn" (click)="updateModal.show = true; updateModal.idToUpdate = item._id"><a>U</a></div>
+        <div class="col-2 delete-btn" (click)="deleteBrand.emit(item._id)"><a>X</a></div>
+    </div>
+    <div class="row car-item no-data" *ngIf="!cars || cars?.length === 0">No data to show</div>
+</ng-container>
+
+<app-input-modal #updateModal entityToUpdate="Brand Name" (save)="updateBrand.emit($event); updateModal.show = false;"></app-input-modal>
