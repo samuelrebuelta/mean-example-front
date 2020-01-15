@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <ng-container *ngFor="let item of todoList">
+            <div class="col-1 check-container">
+                <div class="check" [class.border-completed]="item?.completed"
+                    (click)="item.completed = !item.completed; updateItem(item)">
+                    <div [class.completed]="item?.completed"></div>
+                </div>
+            </div>
+            <div class="col-11">
+                <div class="description">
+                    <input type="text" [(ngModel)]="item.description" (blur)="updateItem(item)"
+                        (keyup.enter)="updateItem(item)">
+                    <div class="date">25 dec, 2019</div>
+                </div>
+            </div>
+        </ng-container>
+        <div class="col-1 check-container">
+            <div class="check">
+                <div class="check-new">+</div>
+            </div>
+        </div>
+        <div class="col-11">
+            <div class="description">
+                <input type="type" [(ngModel)]="newItemValue" placeholder="New reminder" (blur)="postItem()"
+                    (keyup.enter)="postItem()">
+                <div class="date">25 dec, 2019</div>
+            </div>
+        </div>
+    </div>
+</div>

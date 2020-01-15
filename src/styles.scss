@@ -58,3 +58,10 @@ body {
     -ms-scrollbar-track-color: #fcfcfc;
     -ms-overflow-style: -ms-autohiding-scrollbar;
 }
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}

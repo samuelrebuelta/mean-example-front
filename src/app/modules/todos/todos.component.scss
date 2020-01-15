@@ -1,0 +1,53 @@
+.check-container {
+    margin: auto;
+
+    .check {
+        border-radius: 50%;
+        border: 1px solid rgba(0, 0, 0, 0.6);
+        width: 25px;
+        height: 25px;
+        background-color: whitesmoke;
+        margin: 0 auto;
+        cursor: pointer;
+    }
+
+    .check-new {
+        font-weight: 700;
+        font-size: 20px;
+        margin: -5px 0px 0 5px;
+        color: rgba(black, .6);
+    }
+
+    .border-completed {
+        border: 2px solid #EF9B1F !important;
+    }
+
+    .completed {
+        background-color: #EF9B1F !important;
+        border-radius: 50%;
+        width: 15px;
+        height: 15px;
+        padding: 5px;
+        cursor: pointer;
+        margin: 3px;
+    }
+}
+
+.description {
+    margin: 25px;
+    border-bottom: 1px solid rgba(black, .4);
+    width: 100%;
+
+    input {
+        border: none;
+        font-size: 18px;
+        color: rgba(black, .6);
+        width: 100%;
+    }
+
+    .date {
+        font-size: 12px;
+        font-weight: 700;
+        color: #EF9B1F;
+    }
+}

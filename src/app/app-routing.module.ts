@@ -9,10 +9,11 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: 'cars', loadChildren: './modules/cars/cars.module#CarsModule' },
-      { path: '', redirectTo: '/cars', pathMatch: 'full' },
+      { path: 'todos', loadChildren: './modules/todos/todos.module#TodosModule' },
+      { path: '', redirectTo: '/todos', pathMatch: 'full' },
     ]
   },
-  { path: '**', redirectTo: '/cars' },
+  { path: '**', redirectTo: '/todos' },
 ];
 
 

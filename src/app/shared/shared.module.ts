@@ -19,7 +19,8 @@ import { InputModalComponent } from './components/input-modal/input-modal.compon
         HttpClientModule,
         ReactiveFormsModule,
         ToastComponent,
-        InputModalComponent
+        InputModalComponent,
+        FormsModule
     ],
     providers: [],
 })
