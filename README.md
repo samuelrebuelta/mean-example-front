@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.7.
 
+## Descripción
+
+Aplicación web frontal desarrollada en Angular 8.2.9. Contiene 2 módulos: 
+Gestión de marcas y modelos de coche: Te permite añadir Marcas y modelos asociados a la marca y consultarlos.
+Todo List: Listado de tareas que permite guardarlas en base de datos, actualizar el estado y el titulo completamente Responsive.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
