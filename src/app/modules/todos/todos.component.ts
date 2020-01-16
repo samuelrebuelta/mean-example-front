@@ -9,7 +9,6 @@ import { HttpClient } from '@angular/common/http';
 export class TodosComponent implements OnInit {
 
   todoList: Array<any>;
-  newItemValue: string;
 
   constructor(
     private http: HttpClient,
@@ -24,7 +23,7 @@ export class TodosComponent implements OnInit {
       .subscribe((res: any) => this.todoList = res.data);
   }
 
-  updateItem(item) {
+  onUpdateItem(item) {
     if (item && item.description && item.description !== '') {
       const body = { description: item.description, completed: item.completed };
       this.http.put(`http://localhost:3000/todoItem/${item._id}/update`, body)
@@ -32,16 +31,23 @@ export class TodosComponent implements OnInit {
     }
   }
 
-  postItem() {
-    if (this.newItemValue && this.newItemValue !== '') {
-      const body = { description: this.newItemValue };
+  onPostItem(newItemValue) {
+    if (newItemValue && newItemValue !== '') {
+      const body = { description: newItemValue };
       this.http.post('http://localhost:3000/todoItem', body)
         .subscribe(() => {
-          this.newItemValue = null;
           this.fetchTodoList();
         }
         );
     }
+  }
+
+  onDeleteItem(item) {
+    this.http.delete(`http://localhost:3000/todoItem/${item._id}/delete`)
+      .subscribe(() => {
+        this.fetchTodoList();
+      }
+      );
   }
 
 }

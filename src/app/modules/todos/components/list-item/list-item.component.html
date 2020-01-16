@@ -1,0 +1,35 @@
+<div class="row">
+    <ng-container *ngIf="!newItem">
+        <div class="col-2 col-lg-1 col-md-1 check-container">
+            <div class="check" [class.border-completed]="item?.completed"
+                (click)="item.completed = !item.completed; updateItem.emit(item)">
+                <div [class.completed]="item?.completed"></div>
+            </div>
+        </div>
+        <div class="col-10 col-lg-11 col-md-11" style="padding-left: 0;">
+            <div class="description">
+                <div class="row">
+                    <input class="col-10" type="text" [(ngModel)]="item.description" (blur)="updateItem.emit(item)"
+                        (keyup.enter)="updateItem.emit(item)">
+                    <div class="col-2 btn-delete"><span (click)="deleteItem.emit(item)">X</span></div>
+                </div>
+                <div class="date">25 dec, 2019</div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="newItem">
+        <div class="col-2 col-lg-1 col-md-1 check-container" *ngIf="newItem">
+            <div class="check">
+                <div class="check-new">+</div>
+            </div>
+        </div>
+        <div class="col-10 col-lg-11 col-md-11" style="padding-left: 0;">
+            <div class="description">
+                <input type="type" [(ngModel)]="newItemValue" placeholder="New reminder"
+                    (blur)="postItem.emit(newItemValue); newItemValue = null"
+                    (keyup.enter)="postItem.emit(newItemValue); newItemValue = null">
+                <div class="date">25 dec, 2019</div>
+            </div>
+        </div>
+    </ng-container>
+</div>
